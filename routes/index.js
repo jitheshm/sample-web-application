@@ -59,4 +59,10 @@ router.get('/', verifyLogin, (req, res) => {
   res.render('index', { name: req.session.user })
 })
 
+router.get('/logout',(req,res)=>{
+  req.session.destroy(()=>{
+    res.redirect('/login')
+  })
+})
+
 module.exports = router;
