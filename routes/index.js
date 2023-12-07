@@ -1,5 +1,5 @@
 var express = require('express');
-const { signup } = require('../helpers/userHelper/userHelper');
+const { signup, login } = require('../helpers/userHelper/userHelper');
 
 var router = express.Router();
 
@@ -12,13 +12,32 @@ router.post('/signup', (req, res) => {
   console.log(req.body);
   signup(req.body).then((result) => {
     console.log(result);
-    res.json({success:true})
+    res.json({ success: true })
   })
 
 
 })
 router.get('/login', (req, res) => {
-  res.render('login', { title: 'Express' })
+  if (req.session.userLoginError) {
+    var error = "email or password is incorrect"
+    req.session.userLoginError = false
+  }
+  res.render('login', { title: 'Express', error })
+})
+
+
+router.post('/login', (req, res) => {
+  console.log(req.body);
+  login(req.body).then((result) => {
+    if (result.success) {
+      req.session.user = result.data.name
+      req.session.userStatus = result.success
+      res.redirect('/')
+    } else {
+      req.session.userLoginError = true
+      res.redirect('/login')
+    }
+  })
 })
 router.get('/', (req, res) => {
   res.render('index')
