@@ -9,5 +9,8 @@ router.get('/signup', function (req, res, next) {
 router.get('/login',(req,res)=>{
   res.render('login',{ title: 'Express' })
 })
+router.get('/',(req,res)=>{
+  res.render('index')
+})
 
 module.exports = router;
