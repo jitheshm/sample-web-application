@@ -40,7 +40,8 @@ router.post('/login', (req, res) => {
   })
 })
 router.get('/', (req, res) => {
-  res.render('index')
+  
+  res.render('index',{name:req.session.user})
 })
 
 module.exports = router;
