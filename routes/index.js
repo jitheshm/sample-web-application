@@ -13,8 +13,12 @@ const verifyLogin = (req, res, next) => {
 
 /* GET home page. */
 router.get('/signup', function (req, res, next) {
-  res.set('Cache-Control', 'no-store')
-  res.render('signup', { title: 'Express' });
+  if (req.session.userStatus) {
+    res.redirect('/')
+  } else {
+    res.set('Cache-Control', 'no-store')
+    res.render('user/signup', { title: 'Express' });
+  }
 });
 
 router.post('/signup', (req, res) => {
@@ -36,7 +40,7 @@ router.get('/login', (req, res) => {
       req.session.userLoginError = false
     }
     res.set('Cache-Control', 'no-store')
-    res.render('login', { title: 'Express', error })
+    res.render('user/login', { title: 'Express', error })
   }
 })
 
@@ -56,11 +60,11 @@ router.post('/login', (req, res) => {
 })
 router.get('/', verifyLogin, (req, res) => {
   res.set('Cache-Control', 'no-store')
-  res.render('index', { name: req.session.user })
+  res.render('user/index', { name: req.session.user })
 })
 
-router.get('/logout',(req,res)=>{
-  req.session.destroy(()=>{
+router.get('/logout', (req, res) => {
+  req.session.destroy(() => {
     res.redirect('/login')
   })
 })
