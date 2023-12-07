@@ -1,0 +1,22 @@
+document.getElementById('signupForm').addEventListener('submit', (e) => {
+    e.preventDefault()
+    const name = document.getElementById('name').value
+    const email = document.getElementById('email').value
+    const password = document.getElementById('password').value
+    const rePassword = document.getElementById('confirm').value
+    if (password === rePassword) {
+        fetch('/signup', {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                name: name, email: email, password: password
+            }),
+
+        }
+        )
+    } else {
+        document.getElementById('message').innerText="password not match"
+    }
+
+
+})
