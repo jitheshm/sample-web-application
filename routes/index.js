@@ -9,6 +9,7 @@ router.get('/signup', function (req, res, next) {
 
 router.post('/signup',(req,res)=>{
   console.log(req.body);
+  
 })
 router.get('/login',(req,res)=>{
   res.render('login',{ title: 'Express' })
