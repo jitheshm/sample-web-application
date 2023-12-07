@@ -4,15 +4,16 @@ const { signup, login } = require('../helpers/userHelper/userHelper');
 var router = express.Router();
 
 const verifyLogin = (req, res, next) => {
-  if (req.session.userStatus){
+  if (req.session.userStatus) {
     next()
-  }else{
+  } else {
     res.redirect('/login')
   }
 }
 
 /* GET home page. */
 router.get('/signup', function (req, res, next) {
+  res.set('Cache-Control', 'no-store')
   res.render('signup', { title: 'Express' });
 });
 
@@ -26,11 +27,17 @@ router.post('/signup', (req, res) => {
 
 })
 router.get('/login', (req, res) => {
-  if (req.session.userLoginError) {
-    var error = "email or password is incorrect"
-    req.session.userLoginError = false
+  if (req.session.userStatus) {
+    res.redirect('/')
   }
-  res.render('login', { title: 'Express', error })
+  else {
+    if (req.session.userLoginError) {
+      var error = "email or password is incorrect"
+      req.session.userLoginError = false
+    }
+    res.set('Cache-Control', 'no-store')
+    res.render('login', { title: 'Express', error })
+  }
 })
 
 
@@ -47,8 +54,8 @@ router.post('/login', (req, res) => {
     }
   })
 })
-router.get('/',verifyLogin, (req, res) => {
-
+router.get('/', verifyLogin, (req, res) => {
+  res.set('Cache-Control', 'no-store')
   res.render('index', { name: req.session.user })
 })
 
