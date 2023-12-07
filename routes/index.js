@@ -6,5 +6,8 @@ var router = express.Router();
 router.get('/signup', function (req, res, next) {
   res.render('signup', { title: 'Express' });
 });
+router.get('/login',(req,res)=>{
+  res.render('login',{ title: 'Express' })
+})
 
 module.exports = router;
