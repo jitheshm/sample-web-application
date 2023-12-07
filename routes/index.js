@@ -3,6 +3,14 @@ const { signup, login } = require('../helpers/userHelper/userHelper');
 
 var router = express.Router();
 
+const verifyLogin = (req, res, next) => {
+  if (req.session.userStatus){
+    next()
+  }else{
+    res.redirect('/login')
+  }
+}
+
 /* GET home page. */
 router.get('/signup', function (req, res, next) {
   res.render('signup', { title: 'Express' });
@@ -39,9 +47,9 @@ router.post('/login', (req, res) => {
     }
   })
 })
-router.get('/', (req, res) => {
-  
-  res.render('index',{name:req.session.user})
+router.get('/',verifyLogin, (req, res) => {
+
+  res.render('index', { name: req.session.user })
 })
 
 module.exports = router;
