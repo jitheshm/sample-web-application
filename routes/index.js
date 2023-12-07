@@ -1,4 +1,5 @@
 var express = require('express');
+const { signup } = require('../helpers/userHelper/userHelper');
 
 var router = express.Router();
 
@@ -7,14 +8,19 @@ router.get('/signup', function (req, res, next) {
   res.render('signup', { title: 'Express' });
 });
 
-router.post('/signup',(req,res)=>{
+router.post('/signup', (req, res) => {
   console.log(req.body);
-  
+  signup(req.body).then((result) => {
+    console.log(result);
+    res.json({success:true})
+  })
+
+
 })
-router.get('/login',(req,res)=>{
-  res.render('login',{ title: 'Express' })
+router.get('/login', (req, res) => {
+  res.render('login', { title: 'Express' })
 })
-router.get('/',(req,res)=>{
+router.get('/', (req, res) => {
   res.render('index')
 })
 

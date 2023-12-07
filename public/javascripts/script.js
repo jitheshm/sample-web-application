@@ -13,9 +13,16 @@ document.getElementById('signupForm').addEventListener('submit', (e) => {
             }),
 
         }
-        )
+        ).then(async (result) => {
+            data = await result.json()
+            console.log(data);
+            if (data.success) {
+                window.location.href = '/login'
+            }
+
+        })
     } else {
-        document.getElementById('message').innerText="password not match"
+        document.getElementById('message').innerText = "password not match"
     }
 
 
