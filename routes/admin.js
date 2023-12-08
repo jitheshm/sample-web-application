@@ -1,5 +1,6 @@
 var express = require('express');
 const { login, getUsers } = require('../helpers/adminHelper/adminHelper');
+const { signup } = require('../helpers/userHelper/userHelper');
 var router = express.Router();
 
 const verifyLogin = (req, res, next) => {
@@ -39,6 +40,11 @@ router.get("/", verifyLogin, (req, res) => {
 
 router.get('/create',verifyLogin,(req,res)=>{
   res.render('admin/create',{admin:true})
+})
+router.post('/create',(req,res)=>{
+  signup(req.body).then((result)=>{
+    res.redirect('/admin')
+  })
 })
 
 module.exports = router;
