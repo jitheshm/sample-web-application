@@ -1,3 +1,7 @@
+$(document).ready( function () {
+    $('#userTable').DataTable();
+} );
+
 document.getElementById('signupForm').addEventListener('submit', (e) => {
     e.preventDefault()
     const name = document.getElementById('name').value
@@ -27,3 +31,6 @@ document.getElementById('signupForm').addEventListener('submit', (e) => {
 
 
 })
+
+
+
