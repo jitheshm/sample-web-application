@@ -13,3 +13,9 @@
   border-style: dashed!important;
   border-width: 2px!important;
 }
+
+.table td{
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  
+}

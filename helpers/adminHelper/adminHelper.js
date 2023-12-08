@@ -18,5 +18,12 @@ module.exports={
 
             })
         })
+    },
+    getUsers:()=>{
+        return new Promise(async(resolve, reject) => {
+            users=await db.get().collection('user').find().toArray()
+            console.log(users);
+            resolve(users)
+        })
     }
 }
