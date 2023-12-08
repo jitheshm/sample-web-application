@@ -1,0 +1,53 @@
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-success">
+        <div class="container-fluid">
+            <a class="navbar-brand text-white" href="/admin">Admin Panel</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse col-lg-4" id="navbarSupportedContent">
+
+                <form class="d-flex ">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-light text-white ml-2" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+</header>
+<section class=" container-fluid">
+    <div class="col-lg-10 m-auto">
+        <div class="d-flex justify-content-end ">
+            <a class="btn btn-success m-5" href="">Create</a>
+        </div>
+        <table class="table table-hover  border border-success">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Password</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td class="d-flex">
+                        <div>
+                            <a class="btn btn-primary" href="">Edit</a>
+                            <a class="btn btn-danger" href="">Delete</a>
+                        </div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+</section>

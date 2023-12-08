@@ -9,7 +9,7 @@
 .home .content{
   min-height: 100vh;
 }
-.border{
+.home .border{
   border-style: dashed!important;
   border-width: 2px!important;
 }
