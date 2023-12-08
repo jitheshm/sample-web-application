@@ -1,5 +1,5 @@
 var express = require('express');
-const { login, getUsers, findUser, updateUser } = require('../helpers/adminHelper/adminHelper');
+const { login, getUsers, findUser, updateUser, deleteUser } = require('../helpers/adminHelper/adminHelper');
 const { signup } = require('../helpers/userHelper/userHelper');
 var router = express.Router();
 
@@ -59,6 +59,12 @@ router.post('/update',(req,res)=>{
   console.log(req.body);
   updateUser(req.body).then(()=>{
     
+    res.redirect('/admin')
+  })
+})
+
+router.get('/delete',(req,res)=>{
+  deleteUser(req.query.id).then(()=>{
     res.redirect('/admin')
   })
 })
