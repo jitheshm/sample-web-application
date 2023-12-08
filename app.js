@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session')
+var hbs = require('hbs');
 
 var indexRouter = require('./routes/index');
 var adminRouter = require('./routes/admin');
@@ -13,7 +14,7 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-
+hbs.registerPartials(__dirname + '/views/partials', function (err) {});
 app.use(session({
   secret: 'secret',
   resave: false,

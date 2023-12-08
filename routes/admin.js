@@ -32,9 +32,13 @@ router.post('/login', (req, res) => {
 
 router.get("/", verifyLogin, (req, res) => {
   getUsers().then((users)=>{
-    res.render('admin/index',{users})
+    res.render('admin/index',{users,admin:true})
   })
   
+})
+
+router.get('/create',verifyLogin,(req,res)=>{
+  res.render('admin/create',{admin:true})
 })
 
 module.exports = router;
