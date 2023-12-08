@@ -1,3 +1,4 @@
+const { ObjectId } = require('mongodb');
 const db=require('../database/config')
 const bcrypt = require('bcrypt');
 module.exports={
@@ -24,6 +25,28 @@ module.exports={
             users=await db.get().collection('user').find().toArray()
             console.log(users);
             resolve(users)
+        })
+    },
+    findUser:(id)=>{
+        return new Promise((resolve, reject) => {
+            console.log(new ObjectId(id));
+            id=new ObjectId(id)
+            db.get().collection('user').findOne({_id:id}).then((result)=>{
+                console.log(result);
+                resolve(result)
+            })
+        })
+    },
+
+    updateUser:(data)=>{
+        return new Promise((resolve, reject) => {
+            db.get().collection('user').updateOne({_id:new ObjectId(data.id)},{$set:{
+                name:data.name,
+                email:data.email
+            }}).then((res)=>{
+                console.log(res);
+                resolve()
+            })
         })
     }
 }
