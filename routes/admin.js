@@ -11,11 +11,15 @@ const verifyLogin = (req, res, next) => {
   }
 }
 router.get('/login', function (req, res, next) {
-  if (req.session.adminError) {
-    var error = "user name or password is incorrect"
-    req.session.adminError = false
+  if(req.session.adminStatus){
+    res.redirect('/admin')
+  }else{
+    if (req.session.adminError) {
+      var error = "user name or password is incorrect"
+      req.session.adminError = false
+    }
+    res.render('admin/login', { error })
   }
-  res.render('admin/login', { error })
 });
 
 router.post('/login', (req, res) => {
@@ -46,7 +50,7 @@ router.post('/create',(req,res)=>{
     res.redirect('/admin')
   })
 })
-router.get('/edit/:id',(req,res)=>{
+router.get('/edit/:id',verifyLogin,(req,res)=>{
   // console.log(req.params);
   findUser(req.params.id).then((user)=>{
     console.log(user);
@@ -55,7 +59,7 @@ router.get('/edit/:id',(req,res)=>{
  
 })
 
-router.post('/update',(req,res)=>{
+router.post('/update',verifyLogin,(req,res)=>{
   console.log(req.body);
   updateUser(req.body).then(()=>{
     
@@ -63,13 +67,13 @@ router.post('/update',(req,res)=>{
   })
 })
 
-router.get('/delete',(req,res)=>{
+router.get('/delete',verifyLogin,(req,res)=>{
   deleteUser(req.query.id).then(()=>{
     res.redirect('/admin')
   })
 })
 
-router.get('/logout',(req,res)=>{
+router.get('/logout',verifyLogin,(req,res)=>{
   req.session.destroy(()=>{
     res.redirect('/admin/login')
   })

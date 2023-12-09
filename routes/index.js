@@ -16,7 +16,7 @@ router.get('/signup', function (req, res, next) {
   if (req.session.userStatus) {
     res.redirect('/')
   } else {
-    res.set('Cache-Control', 'no-store')
+    
     res.render('user/signup', { title: 'Express' });
   }
 });
@@ -39,7 +39,7 @@ router.get('/login', (req, res) => {
       var error = "email or password is incorrect"
       req.session.userLoginError = false
     }
-    res.set('Cache-Control', 'no-store')
+    
     res.render('user/login', { title: 'Express', error })
   }
 })
@@ -59,7 +59,7 @@ router.post('/login', (req, res) => {
   })
 })
 router.get('/', verifyLogin, (req, res) => {
-  res.set('Cache-Control', 'no-store')
+  
   res.render('user/index', { name: req.session.user })
 })
 
