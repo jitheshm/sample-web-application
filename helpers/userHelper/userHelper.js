@@ -10,6 +10,12 @@ module.exports = {
                 data.password = hash;
                 db.get().collection('user').insertOne(data).then((result) => {
                     resolve("success")
+                }).catch((err)=>{
+                    if(err.code===11000){
+                        reject("email is already registered")
+                    }else{
+                        reject("error")
+                    }
                 })
             });
         })

@@ -22,6 +22,8 @@ document.getElementById('signupForm').addEventListener('submit', (e) => {
             console.log(data);
             if (data.success) {
                 window.location.href = '/login'
+            }else{
+                window.location.href = '/signup'
             }
 
         })

@@ -43,11 +43,20 @@ router.get("/", verifyLogin, (req, res) => {
 })
 
 router.get('/create',verifyLogin,(req,res)=>{
-  res.render('admin/create',{admin:true})
+  if(req.session.createuserError){
+    var msg=req.session.createErrmsg
+    req.session.createuserError=false
+    req.session.createErrmsg=""
+  }
+  res.render('admin/create',{admin:true,error:msg})
 })
 router.post('/create',(req,res)=>{
   signup(req.body).then((result)=>{
     res.redirect('/admin')
+  }).catch((msg)=>{
+    req.session.createuserError=true
+    req.session.createErrmsg=msg
+    res.redirect('/admin/create')
   })
 })
 router.get('/edit/:id',verifyLogin,(req,res)=>{

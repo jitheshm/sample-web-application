@@ -16,8 +16,12 @@ router.get('/signup', function (req, res, next) {
   if (req.session.userStatus) {
     res.redirect('/')
   } else {
-    
-    res.render('user/signup', { title: 'Express' });
+    if(req.session.signupError){
+      var msg=req.session.errMsg
+      req.session.signupError=false
+      req.session.errMsg=""
+    }
+    res.render('user/signup', { title: 'Express' ,error:msg});
   }
 });
 
@@ -26,6 +30,10 @@ router.post('/signup', (req, res) => {
   signup(req.body).then((result) => {
     console.log(result);
     res.json({ success: true })
+  }).catch((msg)=>{
+    req.session.signupError=true
+    req.session.errMsg=msg
+    res.json({ success: false })
   })
 
 

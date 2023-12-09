@@ -7,32 +7,37 @@
                         <div class="card-body p-5">
                             <h2 class="text-uppercase text-center mb-5">Create an user</h2>
 
-                            <form id="createUserForm" method="post" action="/admin/create" >
-
+                            <form id="createUserForm" method="post" action="/admin/create">
+                                <div class="text-danger">
+                                    <span>{{error}}</span>
+                                </div>
                                 <div class="form-outline mb-4">
-                                    <input type="text" name="name" id="name" class="form-control form-control-lg" required/>
+                                    <input type="text" name="name" id="name" class="form-control form-control-lg"
+                                        required />
                                     <label class="form-label" for="form3Example1cg">User Name</label>
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <input type="email" name="email" id="email" class="form-control form-control-lg" required/>
+                                    <input type="email" name="email" id="email" class="form-control form-control-lg"
+                                        required />
                                     <label class="form-label" for="form3Example3cg">User Email</label>
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <input type="password" name="password" id="password" class="form-control form-control-lg" required />
+                                    <input type="password" name="password" id="password"
+                                        class="form-control form-control-lg" required />
                                     <label class="form-label" for="form3Example4cg">Password</label>
                                 </div>
                                 <div>
                                     <span id="message" class="text-danger"></span>
                                 </div>
-                               
+
                                 <div class="d-flex justify-content-center">
                                     <button type="submit"
                                         class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Create</button>
                                 </div>
 
-                               
+
 
                             </form>
 
