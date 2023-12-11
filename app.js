@@ -9,7 +9,7 @@ const nocache = require("nocache");
 
 var indexRouter = require('./routes/index');
 var adminRouter = require('./routes/admin');
-var db=require('./helpers/database/config')
+var db=require('./config/dbConnection')
 var app = express();
 
 // view engine setup

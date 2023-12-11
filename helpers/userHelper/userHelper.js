@@ -1,4 +1,4 @@
-const db = require('../database/config')
+const db = require('../../config/dbConnection')
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 module.exports = {
