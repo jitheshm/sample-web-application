@@ -1,10 +1,10 @@
 .signupContainer{
   min-height: 100vh;
-  background-color: darkgreen;
+  /* background-color: darkgreen; */
 }
 .home{
   min-height: 100vh;
-  background-color: darkgreen;
+  /* background-color: darkgreen; */
 }
 .home .content{
   min-height: 100vh;
