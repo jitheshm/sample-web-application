@@ -8,7 +8,7 @@
             <table id="userTable" class="table table-hover  border border-success table-fixed" style="table-layout:fixed">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
+                    <th scope="col">NO</th>
                     <th scope="col">Name</th>
                     <th scope="col">Email</th>
                    
@@ -18,7 +18,7 @@
             <tbody>
                 {{#each users}}
                 <tr>
-                    <th scope="row">{{this.id}}</th>
+                    <th scope="row">{{inc @index}}</th>
                     <td class="w-25" >{{this.name}}</td>
                     <td class="w-25">{{this.email}}</td>
                   
