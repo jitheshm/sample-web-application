@@ -61,9 +61,15 @@ router.post('/create',(req,res)=>{
 })
 router.get('/edit/:id',verifyLogin,(req,res)=>{
   // console.log(req.params);
+  if(req.session.createuserError){
+    var msg=req.session.createErrmsg
+    req.session.createuserError=false
+    req.session.createErrmsg=""
+  }
   findUser(req.params.id).then((user)=>{
+
     console.log(user);
-    res.render('admin/edit',{user,admin:true})
+    res.render('admin/edit',{user,admin:true,error:msg})
   })
  
 })
@@ -73,6 +79,10 @@ router.post('/update',verifyLogin,(req,res)=>{
   updateUser(req.body).then(()=>{
     
     res.redirect('/admin')
+  }).catch((msg)=>{
+    req.session.createuserError=true
+    req.session.createErrmsg=msg
+    res.redirect(`/admin/edit/${req.body.id}`)
   })
 })
 

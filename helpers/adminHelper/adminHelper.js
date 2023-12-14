@@ -48,6 +48,12 @@ module.exports = {
             }).then((res) => {
                 console.log(res);
                 resolve()
+            }).catch((err)=>{
+                if(err.code===11000){
+                    reject("email is already registered")
+                }else{
+                    reject("error")
+                }
             })
         })
     },

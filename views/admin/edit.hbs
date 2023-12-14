@@ -8,20 +8,23 @@
                             <h2 class="text-uppercase text-center mb-5">Edit an user</h2>
 
                             <form id="createUserForm" method="post" action="/admin/update">
+                                <div class="text-danger">
+                                    <span>{{error}}</span>
+                                </div>
                                 <input type="text" name="id" value="{{user._id}}" hidden>
                                 <div class="form-outline mb-4">
-                                    <input type="text" name="name" id="name" value="{{user.name}}" class="form-control form-control-lg"
-                                        required />
+                                    <input type="text" name="name" id="name" value="{{user.name}}"
+                                        class="form-control form-control-lg" required />
                                     <label class="form-label" for="form3Example1cg">User Name</label>
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <input type="email" name="email" id="email" value="{{user.email}}"" class="form-control form-control-lg"
-                                        required />
+                                    <input type="email" name="email" id="email" value="{{user.email}}"" class="
+                                        form-control form-control-lg" required />
                                     <label class="form-label" for="form3Example3cg">User Email</label>
                                 </div>
 
-                                
+
                                 <div>
                                     <span id="message" class="text-danger"></span>
                                 </div>
