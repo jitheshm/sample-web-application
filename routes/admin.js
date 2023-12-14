@@ -61,10 +61,10 @@ router.post('/create',(req,res)=>{
 })
 router.get('/edit/:id',verifyLogin,(req,res)=>{
   // console.log(req.params);
-  if(req.session.createuserError){
-    var msg=req.session.createErrmsg
-    req.session.createuserError=false
-    req.session.createErrmsg=""
+  if(req.session.updateUserError){
+    var msg=req.session.updateErrmsg
+    req.session.updateUserError=false
+    req.session.updateErrmsg=""
   }
   findUser(req.params.id).then((user)=>{
 
@@ -80,8 +80,8 @@ router.post('/update',verifyLogin,(req,res)=>{
     
     res.redirect('/admin')
   }).catch((msg)=>{
-    req.session.createuserError=true
-    req.session.createErrmsg=msg
+    req.session.updateUserError=true
+    req.session.updateErrmsg=msg
     res.redirect(`/admin/edit/${req.body.id}`)
   })
 })
