@@ -15,7 +15,8 @@
                 </form> --}}
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href="/admin/logout">Logout</a>
+                        <form action="/admin/logout" method="post"><button class="btn text-white" type="submit" style="background-color: transparent; border: none;">logout</button></form>
+                        {{!-- <a class="nav-link text-light" aria-current="page" href="/admin/logout">Logout</a> --}}
                     </li>
                 </ul>
             </div>

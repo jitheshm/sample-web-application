@@ -71,7 +71,7 @@ router.get('/', verifyLogin, (req, res) => {
   res.render('user/index', { name: req.session.user })
 })
 
-router.get('/logout', (req, res) => {
+router.post('/logout', (req, res) => {
   req.session.destroy(() => {
     res.redirect('/login')
   })

@@ -92,7 +92,7 @@ router.get('/delete',verifyLogin,(req,res)=>{
   })
 })
 
-router.get('/logout',verifyLogin,(req,res)=>{
+router.post('/logout',verifyLogin,(req,res)=>{
   req.session.destroy(()=>{
     res.redirect('/admin/login')
   })
