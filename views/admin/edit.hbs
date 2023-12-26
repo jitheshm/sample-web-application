@@ -15,14 +15,14 @@
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="form3Example1cg">User Name</label>
                                     <input type="text" name="name" id="name" value="{{user.name}}"
-                                        class="form-control form-control-lg" required />
+                                        class="form-control form-control-lg" pattern="[a-zA-Z][a-zA-Z ]{2,}" required />
                                     
                                 </div>
 
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="form3Example3cg">User Email</label>
                                     <input type="email" name="email" id="email" value="{{user.email}}" class="
-                                        form-control form-control-lg" required />
+                                        form-control form-control-lg" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2, 4}$" required />
                                     
                                 </div>
 
