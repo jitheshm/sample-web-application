@@ -40,20 +40,23 @@ module.exports = {
 
     updateUser: (data) => {
         return new Promise((resolve, reject) => {
-            db.get().collection('user').updateOne({ _id: new ObjectId(data.id) }, {
-                $set: {
-                    name: data.name,
-                    email: data.email
+            db.get().collection('user').findOne({ email: data.email, _id: { "$ne": new ObjectId(data.id) } }).then((result) => {
+                if (!result) {
+                    db.get().collection('user').updateOne({ _id: new ObjectId(data.id) }, {
+                        $set: {
+                            name: data.name,
+                            email: data.email
+                        }
+                    }).then((res) => {
+                        console.log(res);
+                        resolve()
+                    })
                 }
-            }).then((res) => {
-                console.log(res);
-                resolve()
-            }).catch((err)=>{
-                if(err.code===11000){
+                else {
                     reject("email is already registered")
-                }else{
-                    reject("error")
                 }
+
+
             })
         })
     },
